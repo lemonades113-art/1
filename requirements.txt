@@ -1,0 +1,26 @@
+# GRPO Math (VERL风格) 依赖
+# 4卡分布式训练7B模型
+
+# 核心依赖
+torch>=2.0.0
+transformers>=4.36.0
+accelerate>=0.25.0
+peft>=0.7.0
+datasets>=2.14.0
+
+# DeepSpeed分布式
+deepspeed>=0.12.0
+
+# 训练监控
+wandb>=0.16.0
+
+# 数据处理
+numpy>=1.24.0
+tqdm>=4.65.0
+
+# 其他
+python-dotenv>=1.0.0
+omegaconf>=2.3.0
+
+# 可选: vLLM加速推理 (如果用vLLM做生成)
+# vllm>=0.3.0

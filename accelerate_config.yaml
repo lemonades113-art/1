@@ -1,0 +1,39 @@
+# Accelerate配置文件 (4卡DeepSpeed ZeRO-2)
+# 用于GRPO Math VERL风格训练
+#
+# 使用方法:
+#   accelerate launch --config_file accelerate_config.yaml main.py --mode train
+
+compute_environment: LOCAL_MACHINE
+debug: false
+
+# DeepSpeed ZeRO-2配置
+deepspeed_config:
+  deepspeed_multinode_launcher: standard
+  offload_optimizer_device: none  # 不offload到CPU
+  offload_param_device: none
+  zero3_init_flag: false  # 使用ZeRO-2，不是ZeRO-3
+  zero_stage: 2  # ZeRO Stage 2
+
+# 分布式类型
+distributed_type: DEEPSPEED
+
+# 混合精度
+downcast_bf16: 'no'
+mixed_precision: bf16  # 7B模型用bf16
+
+# 机器配置
+machine_rank: 0
+main_training_function: main
+num_machines: 1
+num_processes: 4  # 4卡
+
+# 通信
+rdzv_backend: static
+same_network: true
+
+# TPU (不使用)
+tpu_env: []
+tpu_use_cluster: false
+tpu_use_sudo: false
+use_cpu: false
